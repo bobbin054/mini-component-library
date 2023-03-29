@@ -1,18 +1,59 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { COLORS } from '../../constants';
-import Icon from '../Icon';
-import { getDisplayedValue } from './Select.helpers';
+import { COLORS } from "../../constants";
+import Icon from "../Icon";
+import { getDisplayedValue } from "./Select.helpers";
 
 const Select = ({ label, value, onChange, children }) => {
   const displayedValue = getDisplayedValue(value, children);
 
   return (
-    <select value={value} onChange={onChange}>
-      {children}
-    </select>
+    <Wrapper>
+      <NativeSelect value={value} onChange={onChange}>
+        {children}
+      </NativeSelect>
+      <PresentationalBit>
+        {displayedValue}
+        <IconWrapper>
+          <Icon id={"chevron-down"} strokeWidth={1} size={24}></Icon>
+        </IconWrapper>
+      </PresentationalBit>
+    </Wrapper>
   );
 };
+const IconWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 24px;
+  height: 24px;
+`;
+
+const Wrapper = styled.div`
+  position: relative;
+  width: max-content;
+`;
+
+const NativeSelect = styled.select`
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+
+  width: 100%;
+  height: 100%;
+`;
+const PresentationalBit = styled.div`
+  background-color: red;
+  font-size: 1rem;
+  font-family: "Roboto";
+  color: ${COLORS.gray700};
+  background-color: ${COLORS.transparentGray15};
+  padding: 12px 16px;
+  border-radius: 8px;
+`;
 
 export default Select;

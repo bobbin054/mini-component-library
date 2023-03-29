@@ -26,7 +26,7 @@ const IconWrapper = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
+  right: 10px;
   margin: auto;
   width: 24px;
   height: 24px;
@@ -53,7 +53,16 @@ const PresentationalBit = styled.div`
   color: ${COLORS.gray700};
   background-color: ${COLORS.transparentGray15};
   padding: 12px 16px;
+  padding-right: 52px;
   border-radius: 8px;
+  pointer-events: none;
+
+  ${NativeSelect}:focus + & {
+    outline: 1px solid red;
+  }
+  ${NativeSelect}:hover + & {
+    color: black;
+  }
 `;
 
 export default Select;
